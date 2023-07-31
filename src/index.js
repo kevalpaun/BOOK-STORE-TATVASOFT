@@ -1,19 +1,42 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
-import reportWebVitals from "./reportWebVitals";
 import App from "./App";
+import { Toaster } from "react-hot-toast";
+import { IconContext } from "react-icons";
+import { BrowserRouter } from "react-router-dom";
+
+export const Context = createContext();
+
+const AppWrapper = () => {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [user, setUser] = useState({});
+    const [cartItems, setCartItems] = useState([]);
+
+    return (
+        <Context.Provider
+            value={{
+                isAuthenticated,
+                setIsAuthenticated,
+                user,
+                setUser,
+                cartItems,
+                setCartItems,
+            }}
+        >
+            <App />
+        </Context.Provider>
+    );
+};
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
-  </React.StrictMode>
+    <React.StrictMode>
+        <BrowserRouter>
+            <IconContext.Provider value={{ color: "#F13A41" }}>
+                <Toaster />
+                <AppWrapper />
+            </IconContext.Provider>
+        </BrowserRouter>
+    </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
