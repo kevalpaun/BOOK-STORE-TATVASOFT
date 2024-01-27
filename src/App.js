@@ -2,10 +2,10 @@ import "./App.css";
 import { Route, Routes, Link, useNavigate } from "react-router-dom";
 import {  useState } from "react";
 
-import NotFound from "./Components/NotFound.js";
+import NotFound from "./components/NotFound.js";
 import Home from "./Components/Home";
 import Register from "./Components/Register";
-import AddBook from "./Components/AddBook.js";
+import AddBook from "./components/AddBook.js";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
